@@ -22,7 +22,7 @@ describe('/artists', () => {
   });
 
   describe('POST /artists', () => {
-    xit('creates a new artist in the database', async () => {
+    it('creates a new artist in the database', async () => {
       const response = await request(app).post('/artists').send({
         name: 'Tame Impala',
         genre: 'Rock',
@@ -51,7 +51,7 @@ describe('/artists', () => {
     });
 
     describe('GET /artists', () => {
-      xit('gets all artist records', (done) => {
+      it('gets all artist records', (done) => {
         request(app)
           .get('/artists')
           .then((res) => {
