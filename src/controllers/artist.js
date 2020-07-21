@@ -33,11 +33,13 @@ exports.list = (_, res) => {
 
   exports.deleteArtist = (req, res) => {
     const { id } = req.params;
-    Artist.destroy(req.body, { where: { id } }).then(([deleterow]) => {
-      if (!deleterow) {
+    Artist.findByPk(id).then((artist) => {
+      if (!artist) {
         res.status(404).json({ error: 'The artist could not be found.' });
       } else {
-        res.status(204).json("Successful Request" + "_" + deleterow);
+        Artist.destroy({ where: { id } }).then(() => {
+          res.status(204).json({ message: 'The artist was deleted' });
+        });
       }
     });
   };
