@@ -9,9 +9,9 @@ app.use(express.json());
 // endpoints for artist
 app.post('/artist', artistControllers.create); // creates an artist
 app.get('/artist', artistControllers.list); // shows all the artists
-app.get('/artist/:artistid', artistControllers.getArtistById); // find an artist by id
-app.patch('/artist/:artistid', artistControllers.updateArtist); // updating the information of the artist
-app.delete('/artist/:artistid', artistControllers.deleteArtist); // deleting an artist 
+app.get('/artist/:artistId', artistControllers.getArtistById); // find an artist by id
+app.patch('/artist/:artistId', artistControllers.updateArtist); // updating the information of the artist
+app.delete('/artist/:artistId', artistControllers.deleteArtist); // deleting an artist 
 
 // endpoints for album
 app.post('/artist/:artistId/album', albumControllers.create);

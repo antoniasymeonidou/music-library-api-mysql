@@ -1,4 +1,3 @@
- 
 const { Artist } = require('../models');
 
 exports.create = (req, res) => {
