@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const { expect } = require('chai');
 const request = require('supertest');
-const { Artist } = require('../src/models');
+const { Artist } = require('../src/sequelize');
 const app = require('../src/app');
 
 describe('/artists', () => {
@@ -101,6 +101,20 @@ describe('/artists', () => {
             expect(res.status).to.equal(200);
             Artist.findByPk(artist.id, { raw: true }).then((updatedArtist) => {
               expect(updatedArtist.genre).to.equal('Psychedelic Rock');
+              done();
+            });
+          });
+      });
+
+      it('updates artist name by id', (done) => {
+        const artist = artists[0];
+        request(app)
+          .patch(`/artists/${artist.id}`)
+          .send({ name: 'MGMT' })
+          .then((res) => {
+            expect(res.status).to.equal(200);
+            Artist.findByPk(artist.id, { raw: true }).then((updatedArtist) => {
+              expect(updatedArtist.name).to.equal('MGMT');
               done();
             });
           });
