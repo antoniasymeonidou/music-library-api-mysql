@@ -1,8 +1,8 @@
 const { Album, Artist } = require('../models');
 
 exports.create = (req, res) => {
-  const { artistId } = req.params;
-  Artist.findByPk(artistId).then((artist) => {
+  const { id } = req.params;
+  Artist.findByPk(id).then((artist) => {
     if (!artist) {
       res.status(404).json({ error: 'The artist could not be found.' });
     } else {
