@@ -30,9 +30,9 @@ describe('/albums', () => {
   });
 
   describe('POST /artists/:artistId/albums', () => {
-    xit('creates a new album for a given artist', (done) => {
+    it('creates a new album for a given artist', (done) => {
       request(app)
-        .post(`/artists/${artist.id}/albums`)
+        .post(`/artists/${artist.artistid}/albums`)
         .send({
           name: 'InnerSpeaker',
           year: 2010,
@@ -43,13 +43,13 @@ describe('/albums', () => {
           Album.findByPk(res.body.id, { raw: true }).then((album) => {
             expect(album.name).to.equal('InnerSpeaker');
             expect(album.year).to.equal(2010);
-            expect(album.artistId).to.equal(artist.id);
+            expect(album.artistId).to.equal(artist.artistid);
             done();
           });
         });
     });
 
-    xit('returns a 404 and does not create an album if the artist does not exist', (done) => {
+    it('returns a 404 and does not create an album if the artist does not exist', (done) => {
       request(app)
         .post('/artists/1234/albums')
         .send({
